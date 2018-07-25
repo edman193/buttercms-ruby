@@ -31,6 +31,7 @@ module ButterCMS
     end
 
     def self.all(options = {})
+      binding.pry
       response = ButterCMS.request(self.endpoint, options)
 
       self.create_collection(response)
