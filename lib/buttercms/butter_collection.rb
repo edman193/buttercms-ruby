@@ -9,6 +9,7 @@ module ButterCMS
       meta = json["meta"]
 
       @meta = HashToObject.convert(meta) if meta
+      binding.pry
       @items = data.map {|o| klass.new("data" => o) }
     end
 
