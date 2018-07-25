@@ -62,6 +62,7 @@ module ButterCMS
 
   def self.api_request(path, options = {})
     query = options.dup
+    binding.pry
     query[:auth_token] ||= api_token
 
     if test_mode
@@ -85,6 +86,7 @@ module ButterCMS
 
         http.request(request)
       end
+    binding.pry
 
     case response
     when Net::HTTPNotFound
@@ -95,12 +97,14 @@ module ButterCMS
   end
 
   def self.request(path, options = {})
+    binding.pry
     raise ArgumentError.new "Please set your API token" unless api_token
 
     key = "buttercms:#{path}:#{options}"
 
     begin
       result = api_request(path, options)
+      binding.pry
 
       if data_store
         data_store.set(key, result)
